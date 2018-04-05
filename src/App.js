@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Secret DVD Store</h1>
+          <h1 className="App-title">Secret DVD Marketplace</h1>
         </header>
         <Container className="container">
         </Container>
