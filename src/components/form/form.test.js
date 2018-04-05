@@ -5,6 +5,14 @@ import Form from './form';
 describe("<Form />", () => {
   const inventory = { name: "Fresh Prince", available: 6 };
   const form = shallow(<Form inventory={inventory} />);
+
+  const findAndType = (value) => {
+    form.find("#input").simulate("change", { target: { value } });
+  }
+
+  const buttonToBeDisabled = (shouldBeDisabled) => {
+    expect(form.find("#button").prop("disabled")).toEqual(shouldBeDisabled);
+  }
   
   it("should render", () => {
     expect(form).toMatchSnapshot();
@@ -15,22 +23,19 @@ describe("<Form />", () => {
   });
 
   it("should update form state on input change", () => {
-    form.find("#input").simulate("change", { target: { value: "5" } });
+    findAndType("5");
     expect(form.state().value).toEqual("5");
   });
 
   it("should disable button if input is empty", () => {
-    form.find("#input").simulate("change", { target: { value: "" } });
-    expect(form.find("#button").prop("disabled")).toEqual(true);
+    findAndType("");
+    buttonToBeDisabled(true);
   });
   
 
   it("should limit quantity to available quantity", () => {
-    const inventory = { name: "Fresh Prince", available: 6 };
-    form.find("#input").simulate("change", { target: { value: "50" }});
-    expect(form.find("#button").prop("disabled")).toEqual(true);
-
+    findAndType("50");
+    buttonToBeDisabled(true);
   });
 
-  
 });
