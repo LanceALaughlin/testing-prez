@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Menu } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import './App.css';
-import ProductMenu from './components/product-menu'
+import ProductMenu from './components/product-menu';
+import FormInput from './components/form-input';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         </header>
         <Container className="container">
           <ProductMenu />
+          <FormInput />
         </Container>
       </div>
     );
